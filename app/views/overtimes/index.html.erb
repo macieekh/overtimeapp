@@ -1,0 +1,31 @@
+<h1>Twoje nadgodziny</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Czas początkowy</th>
+      <th>Czas końcowy</th>
+      <th>Opis</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @overtimes.each do |overtime| %>
+      <tr>
+        <td><%= overtime.start_time %></td>
+        <td><%= overtime.end_time %></td>
+        <td><%= overtime.description %></td>
+        <td><%= link_to 'Show', overtime %></td>
+        <td><%= link_to 'Edit', edit_overtime_path(overtime) %></td>
+        <td><%= link_to 'Destroy', overtime, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Overtime', new_overtime_path %>

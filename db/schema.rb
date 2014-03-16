@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140316170302) do
+ActiveRecord::Schema.define(version: 20140316184821) do
+
+  create_table "overtimes", force: true do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

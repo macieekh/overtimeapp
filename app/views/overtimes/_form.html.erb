@@ -1,0 +1,29 @@
+<%= form_for(@overtime) do |f| %>
+  <% if @overtime.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@overtime.errors.count, "error") %> prohibited this overtime from being saved:</h2>
+
+      <ul>
+      <% @overtime.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :start_time, 'Czas rozpoczęcia:' %><br>
+    <%= f.datetime_select :start_time %>
+  </div>
+  <div class="field">
+    <%= f.label :end_time, 'Czas zakończenia:' %><br>
+    <%= f.datetime_select :end_time %>
+  </div>
+  <div class="field">
+    <%= f.label :description, 'Opis:' %><br>
+    <%= f.text_area :description %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Dodaj" %>
+  </div>
+<% end %>

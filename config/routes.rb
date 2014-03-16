@@ -1,4 +1,6 @@
 Overtimeapp::Application.routes.draw do
+  resources :overtimes
+
   devise_for :users
   root "pages#home"
   get "pages/home"

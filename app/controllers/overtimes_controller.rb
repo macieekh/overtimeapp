@@ -1,4 +1,5 @@
 class OvertimesController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_overtime, only: [:show, :edit, :update, :destroy]
 
   # GET /overtimes
@@ -14,7 +15,7 @@ class OvertimesController < ApplicationController
 
   # GET /overtimes/new
   def new
-    @overtime = Overtime.new
+    @overtime = current_user.overtimes.build
   end
 
   # GET /overtimes/1/edit
@@ -24,7 +25,7 @@ class OvertimesController < ApplicationController
   # POST /overtimes
   # POST /overtimes.json
   def create
-    @overtime = Overtime.new(overtime_params)
+    @overtime = current_user.overtimes.build(overtime_params)
 
     respond_to do |format|
       if @overtime.save

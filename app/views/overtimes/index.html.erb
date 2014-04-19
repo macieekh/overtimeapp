@@ -18,9 +18,11 @@
         <td><%= overtime.start_time %></td>
         <td><%= overtime.end_time %></td>
         <td><%= overtime.description %></td>
-        <td><%= link_to 'Show', overtime %></td>
-        <td><%= link_to 'Edit', edit_overtime_path(overtime) %></td>
-        <td><%= link_to 'Destroy', overtime, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% if user_signed_in? %>
+          <td><%= link_to 'Show', overtime %></td>
+          <td><%= link_to 'Edit', edit_overtime_path(overtime) %></td>
+          <td><%= link_to 'Destroy', overtime, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
       </tr>
     <% end %>
   </tbody>

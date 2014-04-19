@@ -1,0 +1,41 @@
+TEST
+
+<h1>Twoje nadgodziny</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Data</th>
+      <th>Opis</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @overtimes.each do |overtime| %>
+      <tr>
+        <td><%= overtime.start_time.to_s(:overtime_date) %></td>
+        <!-- <td><%= overtime.end_time %></td> -->
+        <td><%= overtime.description %></td>
+        <td><%= overtime.approval_status %></td>
+        <% if user_signed_in? %>
+          <td><%= link_to 'Pokaż', overtime_path(overtime) %></td>
+        <% if current_user.admin? && overtime.approval_status == 2 %>
+          <td>pozwalam</td>
+          <td>dupa</td>
+          <%else%>    
+          <td><%= link_to 'Edytuj', edit_overtime_path(overtime) %></td>
+          <td><%= link_to 'Usuń', overtime, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Wyslij do akceptacji', change_overtimes_path(overtime), method: :put %></td>
+          <% end %>   
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Overtime', new_overtime_path %>

@@ -3,8 +3,7 @@
 <table>
   <thead>
     <tr>
-      <th>Czas początkowy</th>
-      <th>Czas końcowy</th>
+      <th>Data</th>
       <th>Opis</th>
       <th></th>
       <th></th>
@@ -15,13 +14,15 @@
   <tbody>
     <% @overtimes.each do |overtime| %>
       <tr>
-        <td><%= overtime.start_time %></td>
-        <td><%= overtime.end_time %></td>
+        <td><%= overtime.start_time.to_s(:overtime_date) %></td>
+        <!-- <td><%= overtime.end_time %></td> -->
         <td><%= overtime.description %></td>
         <% if user_signed_in? %>
-          <td><%= link_to 'Show', overtime %></td>
-          <td><%= link_to 'Edit', edit_overtime_path(overtime) %></td>
-          <td><%= link_to 'Destroy', overtime, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Pokaż', overtime_path(overtime) %></td>
+          <td><%= link_to 'Edytuj', edit_overtime_path(overtime) %></td>
+          <td><%= link_to 'Usuń', overtime, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Wyslij do akceptacji', change_overtimes_path(overtime), method: :put %></td>
+     
           <% end %>
       </tr>
     <% end %>

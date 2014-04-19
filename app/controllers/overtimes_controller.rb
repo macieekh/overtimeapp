@@ -22,6 +22,14 @@ class OvertimesController < ApplicationController
   def edit
   end
 
+  def change_status
+    @overtime = Overtime.find(params[:id])
+    @overtime.update_attribute(:approval_status, "1")
+    respond_to do |format|
+    format.html { redirect_to overtimes_url, notice: 'Overtime was successfully sent for approval.' }
+  end
+  end
+
   # POST /overtimes
   # POST /overtimes.json
   def create
@@ -70,6 +78,6 @@ class OvertimesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def overtime_params
-      params.require(:overtime).permit(:start_time, :end_time, :description)
+      params.require(:overtime).permit(:start_time, :end_time, :description, :approval_status)
     end
 end

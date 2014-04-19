@@ -23,7 +23,13 @@
     <%= f.label :description, 'Opis:' %><br>
     <%= f.text_area :description %>
   </div>
+  <div class="field">
+
+  <%= f.hidden_field :approval_status, :value => 0 %>
+  </div>
   <div class="actions">
     <%= f.submit "Dodaj" %>
   </div>
 <% end %>
+
+

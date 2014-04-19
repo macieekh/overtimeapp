@@ -4,6 +4,15 @@ Overtimeapp::Application.routes.draw do
   devise_for :users
   root "pages#home"
   get "pages/home"
+
+  resource :overtimes do
+  # Route GET /user/admin_login
+  put '/:id/change_status', to: 'overtimes#change_status', as: 'change'
+
+  # match '/:id/nap', to: 'overtimes#nap', via: [:put]
+end
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

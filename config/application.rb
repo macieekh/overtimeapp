@@ -22,5 +22,6 @@ module Overtimeapp
 
     # Required for Heroku
     config.assets.initialize_on_precompile = false
+    config.time_zone = 'Europe/Warsaw'
   end
 end
